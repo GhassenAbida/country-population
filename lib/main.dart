@@ -1,11 +1,12 @@
+// main function which contains the routes
 import 'package:flutter/material.dart';
 import 'package:lovester/screens/home.dart';
-import 'package:lovester/screens/card.dart';
-import 'package:lovester/functions/getApiPop.dart';
-import 'package:lovester/screens/countryFilter.dart';
-import 'package:lovester/screens/HomeFiltred.dart';
+import 'package:lovester/screens/country_filter.dart';
+import 'package:lovester/screens/home_filtred.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:lovester/screens/favourites.dart';
 void main ()  {
-
+  SharedPreferences.setMockInitialValues({});
   runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
@@ -14,6 +15,7 @@ void main ()  {
       routes:{'/':(context) => const Home(),
         '/Country':(context) => const Country(),
        '/HomeF':(context)=> const HomeF(),
+        '/F':(context)=> const Favourite(),
 
       }
   ));

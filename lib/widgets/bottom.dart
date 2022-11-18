@@ -1,7 +1,16 @@
-import 'package:lovester/screens/countryFilter.dart';
+// this is the button of the home screen
+import 'package:lovester/screens/country_filter.dart';
 import 'package:flutter/material.dart';
+class bottom extends StatefulWidget {
+  const bottom({Key? key}) : super(key: key);
 
-  Widget bottom(BuildContext context) {
+  @override
+  State<bottom> createState() => _bottomState();
+}
+
+class _bottomState extends State<bottom> {
+  @override
+  Widget build(BuildContext context) {
     var size = MediaQuery
         .of(context)
         .size;
@@ -36,13 +45,13 @@ import 'package:flutter/material.dart';
         ),
         IconButton(
           onPressed: () {
-
+            Navigator.pushReplacementNamed(context, '/');
+            setState(() {
+            });
           },
           icon: Icon(
             Icons.cancel,
             color: Colors.red,
-
-
 
           ),
         ),
@@ -52,4 +61,4 @@ import 'package:flutter/material.dart';
 
     );
   }
-
+}

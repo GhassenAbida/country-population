@@ -1,20 +1,15 @@
+// this is used to get the countries and their flags  for the filter
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:lovester/functions/getApi.dart';
+import 'package:lovester/functions/get_api_for_flag.dart';
 import 'package:flag/flag.dart';
-import 'package:lovester/functions/getApiFilter.dart';
-
-
-
+import 'package:lovester/functions/api_population_first_country.dart';
 class Country extends StatefulWidget {
   const Country({Key? key}) : super(key: key);
-
   @override
   State<Country> createState() => _CountryState();
 }
-
 class _CountryState extends State<Country> {
-
   List<dynamic>? data;
   @override
   void initState() {
@@ -22,14 +17,21 @@ class _CountryState extends State<Country> {
     super.initState();
     getCountry();
   }
+  // this method gets the data from the json with getData() ( without using the model )
   void getCountry() async{
     data=await  Api.getData();
     // b=await data.getData() ;
     setState(() {
     });
   }
+  void getPop() async{
+    data=await  ApiPop.getData(0);
+    // b=await data.getData() ;
+    setState(() {
+    });
+  }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     var size = MediaQuery.of(context).size;
     var height = size.height;
    var  width = size.width;
@@ -44,15 +46,13 @@ class _CountryState extends State<Country> {
                   color:Colors.white,
                   child:ListTile(
                     onTap:(){
-                      int i=index;
                       Navigator.pushReplacementNamed(context, '/HomeF',arguments:{
-                        int :i  ,
-
+                        String:data![index]["name"] ,dynamic:data![index]["iso2"],
                       });
                     },
                     hoverColor: Colors.white,
                     title:Text(data![index]["name"]!,
-                    style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                    style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                     leading:  ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),//or 15.0
                       child: Container(
